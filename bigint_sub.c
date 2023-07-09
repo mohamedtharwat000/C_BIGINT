@@ -1,81 +1,73 @@
 #include "BIGINT.h"
 
-/**
- * bigint_sub - Subtracts two bigint numbers.
- * @num1: The first bigint number.
- * @num2: The second bigint number.
- *
- * Return: A pointer to the result of the subtraction.
- */
+
+
 char *bigint_sub(const char *num1, const char *num2)
 {
-	int num1_len = strlen(num1);
-	int num2_len = strlen(num2);
-	int maxLen = (num1_len > num2_len) ? num1_len : num2_len;
-	int subtraction = 0, carry = 0, i = 0, b = 0, s = 0;
-	char *result = calloc((maxLen + 2), sizeof(char));
-	char *tmp = NULL;
-	char *n1 = bigint_rev(num1);
-	char *n2 = bigint_rev(num2);
+	char *result = NULL, *tmp = NULL;
+	char *num1_no_minus = remove_minus(num1);
+	char *num2_no_minus = remove_minus(num2);
 
-	if (bigint_cmp(num1, num2) >= 0)
+	if (num1_no_minus == NULL)
 	{
-		for (i = 0; i < maxLen; i++)
+		num1_no_minus = strdup(num1);
+	}
+
+	if (num2_no_minus == NULL)
+	{
+		num2_no_minus = strdup(num2);
+	}
+
+	if (bigint_cmp(num1, num2) == 0)
+	{
+		result = sub(num1_no_minus, num2_no_minus);
+	}
+
+	if (num1[0] != '-' && num2[0] != '-')
+	{
+		if (bigint_cmp(num1_no_minus, num2_no_minus) == 1)
 		{
-			b = (i < num1_len) ? (n1[i] - '0') : 0;
-			s = (i < num2_len) ? (n2[i] - '0') : 0;
-
-			if (carry == 1)
-			{
-				carry = 0;
-				if (b == 0)
-				{
-					b = b + 9;
-					carry = 1;
-				}
-				else
-				{
-					b = b - 1;
-				}
-			}
-
-			if (b < s)
-			{
-				carry = 1;
-				subtraction = (b + 10) - s;
-			}
-			else
-			{
-				subtraction = b - s;
-			}
-
-			result[i] = subtraction + '0';
-			subtraction = 0;
+			result = sub(num1_no_minus, num2_no_minus);
 		}
 
-		result[i] = '\0';
-
-		while (i > 0 && result[i - 1] == '0')
+		if (bigint_cmp(num1_no_minus, num2_no_minus) == -1)
 		{
-			result[i - 1] = '\0';
-			i--;
+			result = sub(num2_no_minus, num1_no_minus);
+			result = add_minus(result);
 		}
 	}
-	else
+
+	if (num1[0] == '-' && num2[0] == '-')
 	{
-		free(result);
-		tmp = bigint_sub(num2, num1);
-		result = bigint_rev(tmp);
+		if (bigint_cmp(num1_no_minus, num2_no_minus) == 1)
+		{
+			result = sub(num1_no_minus, num2_no_minus);
+			tmp = result;
+			result = add_minus(result);
+			free(tmp);
+		}
+
+		if (bigint_cmp(num1_no_minus, num2_no_minus) == -1)
+		{
+			result = sub(num2_no_minus, num1_no_minus);
+		}
+	}
+
+	if (num1[0] == '-' && num2[0] != '-')
+	{
+		result = add(num1_no_minus, num2_no_minus);
+		tmp = result;
+		result = add_minus(result);
 		free(tmp);
-		tmp = calloc(strlen(result) + 2, sizeof(char));
-		strcpy(tmp, result);
-		tmp[strlen(result)] = '-';
-		tmp[strlen(result) + 1] = '\0';
-		result = tmp;
 	}
 
-	free(n1);
-	free(n2);
+	if (num1[0] != '-' && num2[0] == '-')
+	{
+		result = add(num1_no_minus, num2_no_minus);
+	}
 
-	return bigint_rev(result);
+	free(num1_no_minus);
+	free(num2_no_minus);
+
+	return (result);
 }
