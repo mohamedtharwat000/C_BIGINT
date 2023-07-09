@@ -1,6 +1,11 @@
 #include "BIGINT.h"
 
-
+/**
+ * remove_minus - Removes the minus sign from a given number.
+ * @num: The number to remove the minus sign from.
+ *
+ * Return: A pointer to the number without the minus sign.
+ */
 
 char *remove_minus(const char *num)
 {

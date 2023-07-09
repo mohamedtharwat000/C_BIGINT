@@ -1,6 +1,11 @@
 #include "BIGINT.h"
 
-
+/**
+ * reverse - Reverses a string representing a big integer number.
+ * @num: The string to be reversed.
+ *
+ * Return: A pointer to the reversed string.
+ */
 
 char *reverse(const char *num)
 {

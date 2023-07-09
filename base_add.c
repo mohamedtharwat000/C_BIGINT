@@ -1,6 +1,12 @@
 #include "BIGINT.h"
 
-
+/**
+ * add - Adds two big integer numbers.
+ * @num1: The first big integer number.
+ * @num2: The second big integer number.
+ *
+ * Return: A pointer to the sum of the two numbers.
+ */
 
 char *add(const char *num1, const char *num2)
 {

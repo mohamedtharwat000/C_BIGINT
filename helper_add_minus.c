@@ -1,6 +1,11 @@
 #include "BIGINT.h"
 
-
+/**
+ * add_minus - Adds a minus sign to a given number.
+ * @num: The number to add the minus sign to.
+ *
+ * Return: A pointer to the number with the minus sign.
+ */
 
 char *add_minus(const char *num)
 {

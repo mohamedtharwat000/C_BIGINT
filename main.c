@@ -1,8 +1,5 @@
 #include "BIGINT.h"
 
-#include <stdio.h>
-#include "BIGINT.h"
-
 void test_bigint_add(const char *num1, const char *num2, const char *expected)
 {
 	char *result = bigint_add(num1, num2);

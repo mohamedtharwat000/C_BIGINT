@@ -1,6 +1,12 @@
 #include "BIGINT.h"
 
-
+/**
+ * bigint_sub - Subtracts two big integer numbers.
+ * @num1: The first big integer number.
+ * @num2: The second big integer number.
+ *
+ * Return: A pointer to the result of the subtraction.
+ */
 
 char *bigint_sub(const char *num1, const char *num2)
 {

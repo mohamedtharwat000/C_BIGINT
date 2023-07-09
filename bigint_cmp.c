@@ -1,6 +1,12 @@
 #include "BIGINT.h"
 
-
+/**
+ * bigint_cmp - Compares two big integer numbers.
+ * @num1: The first big integer number.
+ * @num2: The second big integer number.
+ *
+ * Return: 1 if num1 is greater, -1 if num2 is greater, 0 if they are equal.
+ */
 
 int bigint_cmp(const char *num1, const char *num2)
 {
