@@ -14,6 +14,8 @@ int bigint_cmp(const char *num1, const char *num2);
 
 char *add(const char *num1, const char *num2);
 char *sub(const char *num1, const char *num2);
+char *mul(const char *num1, const char *num2);
+char *divi(const char *num1, const char *num2);
 
 char *bigint_add(const char *num1, const char *num2);
 char *bigint_sub(const char *num1, const char *num2);

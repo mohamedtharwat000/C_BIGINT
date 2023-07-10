@@ -26,7 +26,7 @@ char *bigint_add(const char *num1, const char *num2)
 
 	if (num1[0] != '-' && num2[0] != '-')
 	{
-		result = add(num1, num2);
+		result = add(num1_no_minus, num2_no_minus);
 	}
 
 	if (num1[0] == '-' && num2[0] == '-')
