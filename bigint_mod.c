@@ -8,7 +8,7 @@
  * Return: A pointer to the modulus of the two numbers.
  */
 
-char *bigint_mod(const char *num, const char *divisor)
+char *bigint_mod(const char *num, const char *num2)
 {
-	return (NULL);
+	return NULL;
 }

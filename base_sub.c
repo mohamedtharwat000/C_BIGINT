@@ -27,8 +27,8 @@ char *sub(const char *num1, const char *num2)
 	for (i = 0; i < maxLen; i++)
 	{
 
-		num_first = (n1[i] - '0');
-		num_second = (n2[i] - '0');
+		num_first = (n1[i] == '\0') ? 0 : (n1[i] - '0');
+		num_second = (n2[i] == '\0') ? 0 : (n2[i] - '0');
 
 		if (carry == 1)
 		{
