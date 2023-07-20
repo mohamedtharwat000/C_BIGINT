@@ -20,7 +20,8 @@ char *divi(const char *num1, const char *num2);
 char *bigint_add(const char *num1, const char *num2);
 char *bigint_sub(const char *num1, const char *num2);
 char *bigint_mul(const char *num1, const char *num2);
-char *bigint_div(const char *num1, const char *num2);
+
+char *bigint_div(const char *num1, const char *num2, char **reminder);
 char *bigint_mod(const char *num1, const char *num2);
 
 

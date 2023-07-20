@@ -1,5 +1,21 @@
 #include "BIGINT.h"
 
+void test_bigint_cmp(const char *num1, const char *num2, int expected)
+{
+	int result = bigint_cmp(num1, num2);
+	printf("Comparing %s and %s: ", num1, num2);
+	if (result == expected)
+	{
+		printf("PASSED\n");
+	}
+	else
+	{
+		printf("FAILED\n");
+		printf("Expected: %d\n", expected);
+		printf("Actual: %d\n", result);
+	}
+}
+
 void test_bigint_add(const char *num1, const char *num2, const char *expected)
 {
 	char *result = bigint_add(num1, num2);
@@ -32,22 +48,6 @@ void test_bigint_sub(const char *num1, const char *num2, const char *expected)
 		printf("Actual: %s\n", result);
 	}
 	free(result);
-}
-
-void test_bigint_cmp(const char *num1, const char *num2, int expected)
-{
-	int result = bigint_cmp(num1, num2);
-	printf("Comparing %s and %s: ", num1, num2);
-	if (result == expected)
-	{
-		printf("PASSED\n");
-	}
-	else
-	{
-		printf("FAILED\n");
-		printf("Expected: %d\n", expected);
-		printf("Actual: %d\n", result);
-	}
 }
 
 void test_bigint_mul(const char *num1, const char *num2, const char *expected)
@@ -103,14 +103,14 @@ void test_bigint_mod(const char *num, const char *divisor, const char *expected)
 
 int main()
 {
+	printf("\nTesting bigint_cmp:\n");
+	test_bigint_cmp("1234567890", "9876543210", -1);
+
 	printf("Testing bigint_add:\n");
 	test_bigint_add("1234567890", "9876543210", "11111111100");
 
 	printf("\nTesting bigint_sub:\n");
 	test_bigint_sub("9876543210", "1234567890", "8641975320");
-
-	printf("\nTesting bigint_cmp:\n");
-	test_bigint_cmp("1234567890", "9876543210", -1);
 
 	printf("\nTesting bigint_mul:\n");
 	test_bigint_mul("1234567890", "9876543210", "12193263111263526900");
@@ -126,16 +126,7 @@ int main()
 	test_bigint_div("123456789012345678901234567890", "987654321", "125000002");
 	test_bigint_div("987654321098765432109876543210", "123456789", "800000001");
 	test_bigint_div("999999999999999999999999999", "1000000000", "999999999");
-	test_bigint_div("123456789012345678901234567890", "123456789", "1000000000");
-
-	printf("\nTesting bigint_mod:\n");
-	test_bigint_mod("0", "9", "0");
-	test_bigint_mod("9", "1", "0");
-	test_bigint_mod("123456789", "1234567890", "123456789");
-	test_bigint_mod("98765432109876543210", "123", "66");
-	test_bigint_mod("9876543210", "123456789", "90");
-	test_bigint_mod("999999999999999999999999", "1000000000", "999999999");
-	test_bigint_mod("123456789012345678901234567890", "123456789", "0");*/
+	test_bigint_div("123456789012345678901234567890", "123456789", "1000000000");*/
 
 	return 0;
 }

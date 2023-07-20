@@ -7,7 +7,7 @@
  *
  * Return: A pointer to the quotient of the two numbers.
  */
-char *bigint_div(const char *num1, const char *num2)
+char *bigint_div(const char *num1, const char *num2, char **reminder);
 {
 	char *result = NULL, *tmp = NULL;
 	char *num1_no_minus = remove_minus(num1);
